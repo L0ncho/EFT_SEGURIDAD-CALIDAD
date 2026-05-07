@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Portal Interno</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="caja">
+        <h1 style="color: #4CAF50;">¡Hola, Voluntario! 🐶</h1>
+        <p>Aquí puedes ver las solicitudes de adopción recibidas.</p>
+        
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Interesado</th>
+                <th>Correo</th>
+                <th>Mascota</th>
+                <th>Mensaje</th>
+            </tr>
+            <tr th:each="solicitud : ${solicitudes}">
+                <td th:text="${solicitud.id}"></td>
+                <td th:text="${solicitud.nombreSolicitante}"></td>
+                <td th:text="${solicitud.correo}"></td>
+                <td th:text="${solicitud.nombreMascota}"></td>
+                <td th:text="${solicitud.mensaje}"></td>
+            </tr>
+        </table>
+        <br><br>
+        <form th:action="@{/logout}" method="post">
+            <button type="submit" style="background-color: #f44336;" class="btn">Cerrar Sesión</button>
+        </form>
+    </div>
+</body>
+</html>

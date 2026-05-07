@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Unidos por los Animales - Inicio</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>🐾 Bienvenido a Unidos por los Animales 🐾</h1>
+    <a th:href="@{/login}" class="btn">Iniciar Sesión (Voluntarios)</a>
+    <br><br>
+
+    <div th:if="${param.exito}" style="color: green; font-weight: bold;">
+        ¡Solicitud enviada con éxito! Nos contactaremos pronto.
+    </div>
+
+    <h2>Mascotas Disponibles</h2>
+    <table>
+        <tr>
+            <th>Nombre</th>
+            <th>Especie</th>
+            <th>Estado</th>
+        </tr>
+        <tr th:each="animal : ${animales}">
+            <td th:text="${animal.nombre}"></td>
+            <td th:text="${animal.especie}"></td>
+            <td th:text="${animal.estadoAdopcion}"></td>
+        </tr>
+    </table>
+
+    <div class="form-container">
+        <h2>Solicitar Adopción</h2>
+        <form th:action="@{/enviar-solicitud}" method="post">
+            <p>Tu Nombre: <br><input type="text" name="nombreSolicitante" required/></p>
+            <p>Tu Correo: <br><input type="email" name="correo" required/></p>
+            <p>Mascota que te interesa: <br><input type="text" name="nombreMascota" required/></p>
+            <p>¿Por qué quieres adoptarlo?: <br><textarea name="mensaje" required></textarea></p>
+            <button type="submit" class="btn">Enviar Solicitud</button>
+        </form>
+    </div>
+</body>
+</html>
